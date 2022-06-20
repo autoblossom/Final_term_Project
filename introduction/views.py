@@ -6,12 +6,9 @@ from django.http import Http404
 from .models import Question
 
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('introduction/index.html')
-    context = {
-        'latest_question_list': latest_question_list,
-    }
-    return HttpResponse(template.render(context, request))
+    
+    return render(request, "introduction/index.html")
 
-from .models import Question
-
+class Index(View):
+    def get(request):
+        return render(request, "main/index.html")
